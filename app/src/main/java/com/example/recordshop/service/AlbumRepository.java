@@ -36,7 +36,6 @@ public class AlbumRepository {
                     mutableLiveData.setValue(allAlbums);
                 }
             }
-
             @Override
             public void onFailure(Call<List<Album>> call, Throwable t) {
                 Log.e("GET HTTP REQUEST FAILED", Objects.requireNonNull(t.getMessage()));
@@ -44,6 +43,7 @@ public class AlbumRepository {
         });
         return mutableLiveData;
     }
+
 
     public void addAlbum(Album newAlbum) {
         AlbumApiService albumApiService = RetrofitInstance.getService();
