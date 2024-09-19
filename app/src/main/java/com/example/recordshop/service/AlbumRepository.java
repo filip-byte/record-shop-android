@@ -2,6 +2,7 @@ package com.example.recordshop.service;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -42,6 +43,34 @@ public class AlbumRepository {
             }
         });
         return mutableLiveData;
+    }
+
+    public void addAlbum(Album newAlbum) {
+        AlbumApiService albumApiService = RetrofitInstance.getService();
+        Call<Album> call = albumApiService.createAlbum(newAlbum);
+
+        call.enqueue(new Callback<Album>() {
+            @Override
+            public void onResponse(Call<Album> call, Response<Album> response) {
+
+                Toast toast;
+                if (response.isSuccessful() && response.body() != null) {
+                    toast = Toast.makeText(application, "Added successfully!", Toast.LENGTH_SHORT);
+                } else {
+                    toast = Toast.makeText(application, "Failed to add", Toast.LENGTH_SHORT);
+                }
+                toast.show();
+            }
+
+            @Override
+            public void onFailure(Call<Album> call, Throwable t) {
+
+                Toast toast = Toast.makeText(application, "Request failed: " + t.getMessage(), Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+
     }
 
 }
