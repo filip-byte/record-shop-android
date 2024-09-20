@@ -1,6 +1,8 @@
 package com.example.recordshop.ui.mainactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.recordshop.R;
 import com.example.recordshop.databinding.ActivityMainBinding;
 import com.example.recordshop.model.Album;
+import com.example.recordshop.ui.addnewalbum.AddNewAlbumActivity;
 
 import java.util.List;
 
@@ -69,4 +72,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void addAlbum(View view) {
+        Intent intent = new Intent(MainActivity.this, AddNewAlbumActivity.class);
+        MainActivity.this.startActivity(intent);
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.recordshop.ui.mainactivity.addalbum;
+package com.example.recordshop.ui.addnewalbum;
 
 import android.os.Bundle;
 
@@ -32,11 +32,12 @@ public class AddNewAlbumActivity extends AppCompatActivity {
 
         author = new Author();
         album = new Album();
+        album.setAuthor(author);
 
-        AddAlbumClickHandlers clickHandlers = new AddAlbumClickHandlers(album, this, viewModel);
+        AddAlbumClickHandlers handlers = new AddAlbumClickHandlers( album, this, viewModel);
 
         binding.setAlbum(album);
-        binding.setHandler(clickHandlers);
+        binding.setHandler(handlers);
 
     }
 }

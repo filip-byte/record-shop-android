@@ -1,4 +1,4 @@
-package com.example.recordshop.ui.mainactivity.addalbum;
+package com.example.recordshop.ui.addnewalbum;
 
 import android.content.Context;
 import android.content.Intent;

@@ -11,13 +11,13 @@ public class Album extends BaseObservable {
     private int id;
     private String title;
     private int releaseYear;
-    private Genre genre;
+    private String genre;
     private int priceInPence;
     private int stock;
     private Author author;
 
 
-    public Album(int id, String title, int releaseYear, Genre genre, int priceInPence, int stock, Author author) {
+    public Album(int id, String title, int releaseYear, String genre, int priceInPence, int stock, Author author) {
         this.id = id;
         this.title = title;
         this.releaseYear = releaseYear;
@@ -61,11 +61,11 @@ public class Album extends BaseObservable {
     }
 
     @Bindable
-    public Genre getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(Genre genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
         notifyPropertyChanged(BR.genre);
     }
