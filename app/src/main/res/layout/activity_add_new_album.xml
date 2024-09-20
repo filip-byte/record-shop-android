@@ -4,20 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.example.recordshop.util.Converter" />
+
 
         <variable
             name="album"
             type="com.example.recordshop.model.Album" />
+        
+        <variable
+            name="handler"
+            type="com.example.recordshop.ui.addnewalbum.AddAlbumClickHandlers" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+        android:id="@+id/constraintlayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.mainactivity.addalbum.AddNewAlbumActivity">
+        tools:context=".ui.addnewalbum.AddNewAlbumActivity">
 
-        <!-- Title -->
         <EditText
             android:id="@+id/albumTitle"
             android:layout_width="0dp"
@@ -30,7 +35,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_default="percent" />
 
-        <!-- Release Year -->
         <EditText
             android:id="@+id/albumReleaseYear"
             android:layout_width="0dp"
@@ -38,12 +42,11 @@
             android:layout_marginTop="16dp"
             android:hint="Release Year"
             android:inputType="number"
-            android:text="@={String.valueOf(album.releaseYear)}"
+            android:text="@={Converter.intToString(album.releaseYear)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/albumTitle" />
 
-        <!-- Price in Pence -->
         <EditText
             android:id="@+id/albumPrice"
             android:layout_width="0dp"
@@ -51,12 +54,11 @@
             android:layout_marginTop="16dp"
             android:hint="Price (in pence)"
             android:inputType="number"
-            android:text="@={String.valueOf(album.priceInPence)}"
+            android:text="@={Converter.intToString(album.priceInPence)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/albumReleaseYear" />
 
-        <!-- Genre -->
         <EditText
             android:id="@+id/albumGenre"
             android:layout_width="0dp"
@@ -68,7 +70,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/albumPrice" />
 
-        <!-- Stock -->
         <EditText
             android:id="@+id/albumStock"
             android:layout_width="0dp"
@@ -76,12 +77,11 @@
             android:layout_marginTop="16dp"
             android:hint="Stock"
             android:inputType="number"
-            android:text="@={String.valueOf(album.stock)}"
+            android:text="@={Converter.intToString(album.stock)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/albumGenre" />
 
-        <!-- Author Name -->
         <EditText
             android:id="@+id/authorName"
             android:layout_width="0dp"
@@ -93,14 +93,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/albumStock" />
 
-        <!-- Add Album Button -->
         <Button
             android:id="@+id/addAlbumButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:onClick="@{}"
-            android:text="Add Album"
+            android:onClick="@{handler::onSubmitButton}"
+            android:text="@string/add_album"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/authorName" />
