@@ -1,4 +1,25 @@
 <resources>
     <string name="app_name">RecordShop</string>
     <string name="add_album">Add album</string>
+
+    <string-array name="genre_array">
+        <item>CLASSICAL</item>
+        <item>COUNTRY</item>
+        <item>FOLK</item>
+        <item>FUNK</item>
+        <item>HIP_HOP</item>
+        <item>JAZZ</item>
+        <item>JAZZ_FUSION</item>
+        <item>MONSTER_HITS</item>
+        <item>MOTIVATIONAL_SPEECH</item>
+        <item>NOISE</item>
+        <item>OTHER</item>
+        <item>POP</item>
+        <item>RELIGIOUS_ROCK</item>
+        <item>ROCK</item>
+        <item>SOUL</item>
+        <item>THEATRICAL</item>
+        <item>STANDUP_COMEDY</item>
+    </string-array>
+
 </resources>
