@@ -57,7 +57,7 @@ public class AlbumRepository {
                 if (response.isSuccessful() && response.body() != null) {
                     toast = Toast.makeText(application, "Added successfully!", Toast.LENGTH_SHORT);
                 } else {
-                    toast = Toast.makeText(application, "Failed to add", Toast.LENGTH_SHORT);
+                    toast = Toast.makeText(application, "Failed to add", Toast.LENGTH_LONG);
                 }
                 toast.show();
             }

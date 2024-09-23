@@ -43,8 +43,6 @@ public class AddAlbumClickHandlers {
 
             Intent intent = new Intent(context, MainActivity.class);
             context.startActivity(intent);
-            Toast.makeText(context, "Album Added Successfully!", Toast.LENGTH_SHORT).show();
-
         }
 
     }

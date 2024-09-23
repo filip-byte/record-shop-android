@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RecordShop</string>
     <string name="add_album">Add album</string>
+    <string name="add_a_new_album">Add a new album</string>
 
     <string-array name="genre_array">
         <item>CLASSICAL</item>
