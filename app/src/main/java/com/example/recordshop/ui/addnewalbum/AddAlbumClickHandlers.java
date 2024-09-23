@@ -29,6 +29,7 @@ public class AddAlbumClickHandlers {
                 album.getAuthor().getName().isEmpty()) {
 
             Toast.makeText(context, "All fields must be filled", Toast.LENGTH_SHORT).show();
+
         } else {
 
             Album newAlbum = new Album(album.getId(),

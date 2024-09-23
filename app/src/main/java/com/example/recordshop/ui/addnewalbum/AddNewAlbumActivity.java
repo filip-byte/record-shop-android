@@ -1,12 +1,8 @@
 package com.example.recordshop.ui.addnewalbum;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -17,9 +13,6 @@ import com.example.recordshop.databinding.ActivityAddNewAlbumBinding;
 import com.example.recordshop.model.Album;
 import com.example.recordshop.model.Author;
 import com.example.recordshop.ui.mainactivity.MainActivityViewModel;
-
-import java.sql.Array;
-import java.util.ArrayList;
 
 public class AddNewAlbumActivity extends AppCompatActivity {
 
