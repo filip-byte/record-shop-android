@@ -22,8 +22,6 @@ public class AddNewAlbumActivity extends AppCompatActivity {
     private Author author;
     private AutoCompleteTextView genreDropdown;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +44,7 @@ public class AddNewAlbumActivity extends AppCompatActivity {
                 R.array.genre_array,
                 android.R.layout.simple_spinner_item);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genreDropdown.setAdapter(adapter);
 
     }
