@@ -82,7 +82,7 @@ public class AlbumRepository {
 
     }
 
-    public void updateAlbum(Long id, Album album, Callback<Album> response) {
+    public void updateAlbum(Long id, Album album) {
         AlbumApiService albumApiService = RetrofitInstance.getService();
         Call<Album> call = albumApiService.updateAlbum(id, album);
 
@@ -103,7 +103,7 @@ public class AlbumRepository {
             }
 
             @Override
-            public void onFailure(Call<Album> call, Throwable t) {
+            public void onFailure(@NonNull Call<Album> call, @NonNull Throwable t) {
                 Toast toast = Toast.makeText(
                         application,
                         "Request failed: " + t.getMessage(),
@@ -113,7 +113,7 @@ public class AlbumRepository {
         });
     }
 
-    public void deleteAlbum(Long id, Callback<Void> response) {
+    public void deleteAlbum(Long id) {
         AlbumApiService albumApiService = RetrofitInstance.getService();
         Call<Void> call = albumApiService.deleteAlbum(id);
 
