@@ -15,6 +15,7 @@ import com.example.recordshop.R;
 import com.example.recordshop.databinding.ActivityMainBinding;
 import com.example.recordshop.model.Album;
 import com.example.recordshop.ui.addnewalbum.AddNewAlbumActivity;
+import com.example.recordshop.ui.updatealbum.UpdateAlbum;
 
 import java.util.List;
 
@@ -78,9 +79,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(this, UpdateAlbumActivity.class);
+        Intent intent = new Intent(this, UpdateAlbum.class);
 
-        Album clickedAlbum = album.get(position);
+        Album clickedAlbum = albums.get(position);
         intent.putExtra("selected_album", clickedAlbum);
 
         startActivity(intent);
