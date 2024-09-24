@@ -18,7 +18,7 @@ import com.example.recordshop.ui.addnewalbum.AddNewAlbumActivity;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
 
     private ActivityMainBinding binding;
 
@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private MainActivityViewModel viewModel;
 
     private List<Album> albums;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = binding.recyclerView;
 
         // Create this album adapter...
-        albumAdapter = new AlbumAdapter(albums, this);
+        albumAdapter = new AlbumAdapter(albums, this, this);
         // ... and then set it to the recyclerView.
         recyclerView.setAdapter(albumAdapter);
 
@@ -76,4 +75,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, AddNewAlbumActivity.class);
         MainActivity.this.startActivity(intent);
     }
+
+    @Override
+    public void onItemClick(int position) {
+
+    }
+
 }
