@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.recordshop.model.Album;
@@ -30,15 +31,18 @@ public class AlbumRepository {
 
         call.enqueue(new Callback<List<Album>>() {
             @Override
-            public void onResponse(Call<List<Album>> call, Response<List<Album>> response) {
+            public void onResponse(@NonNull Call<List<Album>> call,
+                                   @NonNull Response<List<Album>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Album> allAlbums = response.body();
                     mutableLiveData.setValue(allAlbums);
                 }
             }
+
             @Override
-            public void onFailure(Call<List<Album>> call, Throwable t) {
-                Log.e("GET HTTP REQUEST FAILED", Objects.requireNonNull(t.getMessage()));
+            public void onFailure(@NonNull Call<List<Album>> call, @NonNull Throwable t) {
+                Log.e("GET HTTP REQUEST FAILED", Objects.requireNonNull(
+                        t.getMessage()));
             }
         });
         return mutableLiveData;
@@ -51,25 +55,94 @@ public class AlbumRepository {
 
         call.enqueue(new Callback<Album>() {
             @Override
-            public void onResponse(Call<Album> call, Response<Album> response) {
+            public void onResponse(@NonNull Call<Album> call, @NonNull Response<Album> response) {
 
                 Toast toast;
                 if (response.isSuccessful() && response.body() != null) {
-                    toast = Toast.makeText(application, "Added successfully!", Toast.LENGTH_SHORT);
+                    toast = Toast.makeText(application, "Added successfully!",
+                            Toast.LENGTH_SHORT);
                 } else {
-                    toast = Toast.makeText(application, "Failed to add", Toast.LENGTH_LONG);
+                    toast = Toast.makeText(application, "Failed to add",
+                            Toast.LENGTH_LONG);
+                }
+                toast.show();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Album> call, Throwable t) {
+
+                Toast toast = Toast.makeText(
+                        application,
+                        "Request failed: " + t.getMessage(),
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+
+    }
+
+    public void updateAlbum(Long id, Album album, Callback<Album> response) {
+        AlbumApiService albumApiService = RetrofitInstance.getService();
+        Call<Album> call = albumApiService.updateAlbum(id, album);
+
+        call.enqueue(new Callback<Album>() {
+
+            Toast toast;
+
+            @Override
+            public void onResponse(@NonNull Call<Album> call, @NonNull Response<Album> response) {
+                if (response.isSuccessful()) {
+                    toast = Toast.makeText(application, "Album updated!",
+                            Toast.LENGTH_SHORT);
+                } else {
+                    toast = Toast.makeText(application, "Failed to update.",
+                            Toast.LENGTH_LONG);
                 }
                 toast.show();
             }
 
             @Override
             public void onFailure(Call<Album> call, Throwable t) {
-
-                Toast toast = Toast.makeText(application, "Request failed: " + t.getMessage(), Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(
+                        application,
+                        "Request failed: " + t.getMessage(),
+                        Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
+    }
 
+    public void deleteAlbum(Long id, Callback<Void> response) {
+        AlbumApiService albumApiService = RetrofitInstance.getService();
+        Call<Void> call = albumApiService.deleteAlbum(id);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+
+                Toast toast;
+
+                if (response.isSuccessful()) {
+                    toast = Toast.makeText(application, "Album deleted!",
+                            Toast.LENGTH_SHORT);
+                } else {
+                    toast = Toast.makeText(application, "Unable to delete.",
+                            Toast.LENGTH_LONG);
+                }
+                toast.show();
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                Toast toast = Toast.makeText(
+                        application,
+                        "Request failed: " + t.getMessage(),
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
 
     }
 
