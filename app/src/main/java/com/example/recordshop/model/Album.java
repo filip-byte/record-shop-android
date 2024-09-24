@@ -1,13 +1,16 @@
 package com.example.recordshop.model;
 
 import android.annotation.SuppressLint;
+import android.os.Parcel;
+import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.example.recordshop.BR;
 
-public class Album extends BaseObservable {
+public class Album extends BaseObservable  implements Parcelable {
     private int id;
     private String title;
     private int releaseYear;
@@ -29,6 +32,27 @@ public class Album extends BaseObservable {
 
     public Album() {
     }
+
+    protected Album(Parcel in) {
+        id = in.readInt();
+        title = in.readString();
+        releaseYear = in.readInt();
+        genre = in.readString();
+        priceInPence = in.readInt();
+        stock = in.readInt();
+    }
+
+    public static final Creator<Album> CREATOR = new Creator<Album>() {
+        @Override
+        public Album createFromParcel(Parcel in) {
+            return new Album(in);
+        }
+
+        @Override
+        public Album[] newArray(int size) {
+            return new Album[size];
+        }
+    };
 
     @Bindable
     public int getId() {
@@ -105,7 +129,18 @@ public class Album extends BaseObservable {
         return String.format("£%.2f", priceInPence / 100.0);
     }
 
-    public String stockDescription(){
-        return stock + " in stock";
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(title);
+        parcel.writeInt(releaseYear);
+        parcel.writeString(genre);
+        parcel.writeInt(priceInPence);
+        parcel.writeInt(stock);
     }
 }
