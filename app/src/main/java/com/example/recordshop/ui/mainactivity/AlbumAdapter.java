@@ -17,17 +17,20 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
     private List<Album> albums;
     private Context context;
+    private RecyclerViewInterface recyclerViewInterface;
 
-    public AlbumAdapter(List<Album> albums, Context context) {
+    public AlbumAdapter(List<Album> albums, Context context, RecyclerViewInterface recyclerViewInterface) {
         this.albums = albums;
         this.context = context;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
     @Override
     public AlbumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        AlbumItemBinding albumItemBinding = AlbumItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new AlbumViewHolder(albumItemBinding);
+        AlbumItemBinding albumItemBinding = AlbumItemBinding.inflate(LayoutInflater.from(
+                parent.getContext()), parent, false);
+        return new AlbumViewHolder(albumItemBinding, recyclerViewInterface);
     }
 
     @Override
@@ -42,16 +45,27 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
         return albums.size();
     }
 
-
     public static class AlbumViewHolder extends RecyclerView.ViewHolder {
 
         private AlbumItemBinding albumItemBinding;
 
-        public AlbumViewHolder(AlbumItemBinding albumItemBinding) {
+        public AlbumViewHolder(AlbumItemBinding albumItemBinding,
+                               RecyclerViewInterface recyclerViewInterface) {
             super(albumItemBinding.getRoot());
             this.albumItemBinding = albumItemBinding;
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (recyclerViewInterface != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            recyclerViewInterface.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
-
 }
 
