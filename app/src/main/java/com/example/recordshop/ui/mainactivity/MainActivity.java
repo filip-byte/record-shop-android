@@ -78,6 +78,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
 
     @Override
     public void onItemClick(int position) {
+        Intent intent = new Intent(this, UpdateAlbumActivity.class);
+
+        Album clickedAlbum = album.get(position);
+        intent.putExtra("selected_album", clickedAlbum);
+
+        startActivity(intent);
 
     }
 
